@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Registr nájmů" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+
+
+<nav class="top-bar" data-topbar role="navigation">
+
+  <ul class="title-area">
+
+    <li class="name">
+
+
+
+      <h1><a href="/">Registr</a></h1>
+
+    </li>
+
+    
+
+   
+
+
+
+
+  
+
+
+
+     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+
+  </ul>
+
+
+
+  <section class="top-bar-section">
+
+    <!-- Right Nav Section -->
+
+    <ul class="right">
+
+ <%if user_signed_in?%>
+ <li><%=link_to current_user.email, edit_user_registration_path%></li>
+      <li><%=link_to "Odhlásit", destroy_user_session_path, method: :delete%></li>
+
+<%end%>
+
+
+<%if !user_signed_in?  %>
+
+
+              <li><%=link_to "Přihlásit se ", new_user_session_path%></li>
+ 
+        
+              <li><%=link_to "Registrace", new_user_registration_path%></li>
+             
+              <li><%=link_to "All subjects", subjects_path%></li>
+        
+
+              <%end%>
+
+ <%if user_signed_in?%>
+
+      <li class="has-dropdown">
+
+        <a href="#">Dropdown</a>
+
+        <ul class="dropdown">
+<%end%>
+
+ <%if user_signed_in? && current_user.is_tenant?%>
+
+           
+             
+            
+              <li><%=link_to "Předměty", subjects_path%></li>
+              <li><%=link_to "Smlouvy", contracts_path%></li>
+              
+           
+
+            <%end%>
+
+
+            <%if user_signed_in? && current_user.is_landlord?%>
+             
+              <li><%=link_to "Předměty", subjects_path%></li>
+              <li><%=link_to "Smlouvy", contracts_path%></li>
+              
+               
+
+                <%end%>
+
+    
+
+        </ul>
+
+      </li>
+
+    </ul>
+
+ 
+
+
+
+    <!-- Left Nav Section -->
+
+    <ul class="left">
+
+
+
+      <li class="has-form">
+
+      <div class="row collapse">
+
+
+
+
+        <div class="large-5 small-9 columns">
+                  <%= form_tag subjects_path, method: :get, class: "navbar-form navbar-right", role: "search" do %>
+                  <p><%= text_field_tag :search, params[:search], class: "radius-left expand", placeholder: "Vyhledávání předmětů" %></p>    
+        </div>
+
+        <div class="large-4 small-3 columns">
+                   <p><%= submit_tag "Hledat", name: nil, class: "alert button expand" %></p>       
+
+              <%end%>           
+        </div>
+
+
+       
+
+        <div class="small-3 columns">
+                  <%=link_to "Rozšířené", searches_path, class: "button"%>
+        </div>
+
+
+
+
+</div>
+    </li>
+
+
+
+
+    </ul>
+
+ 
+ 
+ 
+               
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+
+</nav>
+
+
+
+
+
+  
+    <div id="main-content" class="row full-min-height">
+      <%= yield %>
+    </div>
+
+    <footer class="row">
+      <div class="large-12 columns">
+        <hr>
+        <p>© Registr 2015</p>
+      </div>
+    </footer>
+
+    <%= javascript_include_tag "application" %>
+
+  </body>
+</html>
+
+
+
+

@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Contracts</h1>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Contract for subject</th>
+      <th>Date from</th>
+      <th>Date to</th>
+      <th>Description</th>
+      <th>Terminate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+ 
+
+  <tbody>
+    <% @contracts.each do |contract| %>
+      <tr>
+
+        <td><%= contract.subject.name  %></td>
+        <td><%= contract.date_from %></td>
+        <td><%= contract.date_to %></td>
+        <td><%= contract.description %></td>
+        <td><%= contract.terminate %></td>
+        <td><%= link_to 'Show', contract %></td>
+
+
+
+
+
+         <%if user_signed_in? && current_user.is_landlord?%>
+        <td><%= link_to 'Edit', edit_contract_path(contract) %></td>
+        <td><%= link_to 'Terminate', terminate_contract_path(contract), data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', contract, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+ 
+<br>
+ <%if user_signed_in? && current_user.is_landlord?%>
+<%= link_to 'New Contract', new_contract_path %>
+<%end%>
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+<%= simple_form_for @subject, :html => {:multipart => true} do |f| %>
+
+  <% if @subject.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
+
+      <ul>
+      <% @subject.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+
+
+   <div class="field">
+    <%= f.label :type %><br />
+    <%= f.select :type, options_for_select(["Movitost","Nemovitost", "Ostatní"])%>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+
+ <div class="field">
+    <%= f.fields_for :images, @subject.images do |i| %>
+    <%=i.file_field :image %>
+    <%end%>
+  </div>
+
+
+
+  
+
+ <div class="field">
+    <%= f.label :remote_image_url, "or image URL" %><br />
+    <%= f.text_field :remote_image_url %>
+  </div>
+
+ <div class="field">
+   
+    <%= f.input :is_public2, label:"veřejny"%>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
+

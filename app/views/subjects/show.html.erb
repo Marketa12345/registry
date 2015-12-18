@@ -1,0 +1,72 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @subject.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @subject.type %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @subject.description %>
+</p>
+
+
+<%@subject.images.each do |im|%>
+<%=image_tag im.image.url(:small)%>
+<%end%>
+
+<%= image_tag @subject.image_url(:small) if @subject.image? %>
+
+
+
+ <%if user_signed_in? && current_user.is_landlord? && current_user.id == @subject.user_id %>
+      <%= link_to 'Edit', edit_subject_path(@subject) %> |
+<%end%>
+
+<%= link_to 'Back', subjects_path %>
+
+<br>
+
+
+
+
+<% if @contracts.where(is_public: false).where(terminate: false).any? %>
+
+
+      <% if user_signed_in? && current_user.id == @subject.user_id %>
+          <% @contracts.where(is_public: false).where(terminate: false).each do |contract| %>         
+              
+             <h3>Neveřejná smlouva: </h3>
+              <p>Datum počátku smlouvy: <%= contract.date_from %></p>
+               <p>Datum vypršení smlouvy: <%= contract.date_to %></p>
+               <p>Popis smlouvy: <%= contract.description %></p>
+         <% end %>
+      <% else %>
+        
+            <h3>Na předmětu je neveřejná smlouva</h3>
+      <% end %>
+
+ <% end %>
+
+
+
+          <% @contracts.where(is_public: true).where(terminate: false).each do |contract| %>         
+              
+             <h3>Veřejná smlouva: </h3>
+              <p>Datum počátku smlouvy: <%= contract.date_from %></p>
+               <p>Datum vypršení smlouvy: <%= contract.date_to %></p>
+               <p>Popis smlouvy: <%= contract.description %></p>
+                    
+          <% end %>
+
+        
+  <% if user_signed_in? && current_user.is_landlord? && current_user.id == @subject.user_id %>
+          <h3>Chceš přidat smlouvu? </h3>
+          <%= link_to "Přidat smlouvu k věci", new_contract_path(@contract) %>
+        
+ <% end %>

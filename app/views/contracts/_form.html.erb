@@ -1,0 +1,22 @@
+<%= simple_form_for(@contract) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  	 <%= f.input :subject_id, collection: current_user.subjects %>
+    <%= f.input :date_from %>
+    <%= f.input :date_to %>
+    <%= f.input :description %>
+
+
+ <div class="field">
+   
+    <%= f.input :is_public, label:"veřejny"%>
+  </div>
+
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

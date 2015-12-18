@@ -1,0 +1,56 @@
+<%=search_form_for @search, url: url_for, method: :get do |f| %>
+
+<h1>Rozšířené vyhledávání</h1>
+<p>Zadejte parametry, podle kterých chcete vyhledávat</p><br>
+
+
+<div>
+ <%= f.label :name_cont, "Jméno věci" %><br>
+ <%= f.text_field :name_cont %>
+</div>
+
+<div>
+    <%= f.label :type_cont, "Typ věci" %> <br>
+    <%= f.select :type_cont, options_for_select(["Movitost","Nemovitost", "Ostatní"])%>
+</div>
+
+<div>
+ <%= f.label :description_cont, "Klíčové slovo z popisku" %><br>
+ <%= f.text_field :description_cont %>
+</div>
+
+<div><%= f.submit "Potvrďit"%></div>
+
+
+<%end%>
+
+
+<h2>Výsledky vyhledávání</h2>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= subject.name %></td>
+        <td><%= subject.type %></td>
+        <td><%= subject.description %></td>
+        <td><%= link_to 'Show', subject %></td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
