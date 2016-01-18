@@ -37,6 +37,7 @@
 
         height: 1.85rem; } }
 
+        
 .simple_form label {
   float: left;
   width: 100px;
@@ -78,3 +79,4 @@
   display: block;
   font-style: italic;
 }
+

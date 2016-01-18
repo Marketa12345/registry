@@ -1,0 +1,2 @@
+module LeasableHelper
+end

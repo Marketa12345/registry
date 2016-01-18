@@ -1,7 +1,15 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy, :leasable]
   before_action :authenticate_user!, except: [:index, :show]
 
+
+    def leasable
+@subject.leasable = true
+@subject.save
+
+redirect_to subjects_path
+
+  end
 
   # GET /subjects
   # GET /subjects.json
@@ -22,6 +30,11 @@ class SubjectsController < ApplicationController
   def show
 
     @contracts=@subject.contracts
+  
+    @subjects = Subject.where(is_public2: true)
+ 
+
+
   end
 
   # GET /subjects/new

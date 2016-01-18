@@ -25,6 +25,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'simple_form'
 gem 'devise'
 
+
+
+
+
+#for contacting owner of subjects
+gem 'mail_form'
+
+
 gem "rmagick"
 gem "carrierwave"
 

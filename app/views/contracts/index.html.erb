@@ -34,7 +34,7 @@
 
          <%if user_signed_in? && current_user.is_landlord?%>
         <td><%= link_to 'Edit', edit_contract_path(contract) %></td>
-        <td><%= link_to 'Terminate', terminate_contract_path(contract), data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Terminate', terminate_contract_path(contract)  %></td>
         <td><%= link_to 'Destroy', contract, method: :delete, data: { confirm: 'Are you sure?' } %></td>
          
         <%end%>

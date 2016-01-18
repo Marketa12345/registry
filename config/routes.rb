@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
   
+
+  get 'leasable/index'
+
   resources :contracts
-  resources :contracts
+ 
   resources :searches
   resources :users
   #resources :renter
-  resources :profiles
+
+
+  resources :profiles do
+    get :my, on: :collection
+  end
+
+
   resources :subjects
   get 'home/index'
 
@@ -25,6 +34,12 @@ end
  resources :contracts do
 
   get :terminate, on: :member
+
+ end
+
+  resources :subjects do
+
+  get :leasable, on: :member
 
  end
 

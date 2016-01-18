@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @profile.name %>
+</p>
+
+<p>
+  <strong>Surname:</strong>
+  <%= @profile.surname %>
+</p>
+
+<p>
+  <strong>Street:</strong>
+  <%= @profile.street %>
+</p>
+
+<p>
+  <strong>Street number:</strong>
+  <%= @profile.street_number %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @profile.zip_code %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @profile.city %>
+</p>
+
+<% if user_signed_in?  #&&  current_user.id == @profile.user_id %>
+
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', my_profiles_path %>
+<% end%>

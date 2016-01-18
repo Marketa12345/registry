@@ -35,6 +35,22 @@
 
 
 
+
+<% if user_signed_in? && current_user.id == @subject.user_id %>
+<% if @contracts.empty? %>
+<% if @subjects.where(leasable: false) %> 
+<p>Na přemětu není žádná smlouva, chcete ho nabídnout k pronájmu? Pozn: pokud je věc neveřejná, nezobrazí se v seznamu věcí k pronájmu ostatním uživatelům, pokud chcete věc veřejně nabídnout k pronájmu, musí být věc veřejná </p>
+<td><%= link_to 'Nabídnout k pronájmu', leasable_subject_path(@subject)  %></td>
+<%end%>
+<%end%>
+<%end%>
+
+
+<% if @subjects.where(leasable: true) %> 
+<p>Předmět je nabízen v katalogu pro nájem </p>
+<%end%>
+
+
 <% if @contracts.where(is_public: false).where(terminate: false).any? %>
 
 
