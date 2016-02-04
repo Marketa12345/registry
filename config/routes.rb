@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
 
+
+
+
+
   get 'leasable/index'
 
   resources :contracts
@@ -12,6 +16,15 @@ Rails.application.routes.draw do
 
   resources :profiles do
     get :my, on: :collection
+  end
+
+
+ resources :leasable do
+    get :all, on: :collection
+  end
+  
+  resources :messages do
+    get :my_messages, on: :collection
   end
 
 
@@ -40,8 +53,13 @@ end
   resources :subjects do
 
   get :leasable, on: :member
+  get :not_leasable, on: :member
+  get :watching, on: :member
+  resources :contacts
 
  end
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

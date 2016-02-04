@@ -19,8 +19,17 @@
  <%= f.text_field :description_cont %>
 </div>
 
-<div><%= f.submit "Potvrďit"%></div>
+  <div class="form-actions">
 
+
+   
+
+
+    <%= f.submit "Potvrďit", class: "button"%>
+
+
+
+  </div>
 
 <%end%>
 
@@ -31,10 +40,12 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
+      <th>Jméno</th>
+      <th>Typ</th>
+      <th>Popis</th>
+      <th >Kontakt</th>
       <th colspan="3"></th>
+      
     </tr>
   </thead>
 
@@ -44,7 +55,9 @@
         <td><%= subject.name %></td>
         <td><%= subject.type %></td>
         <td><%= subject.description %></td>
-        <td><%= link_to 'Show', subject %></td>
+        <td><%= link_to 'Kontaktovat vlastníka', new_subject_contact_path(subject) %></td>
+        <td><%= link_to 'Detail předmětu', subject %></td>
+        
        
       </tr>
     <% end %>

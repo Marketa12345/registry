@@ -1,17 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Jméno:</strong>
   <%= @subject.name %>
 </p>
 
 <p>
-  <strong>Type:</strong>
+  <strong>Typ:</strong>
   <%= @subject.type %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Popis:</strong>
   <%= @subject.description %>
 </p>
 
@@ -25,10 +25,10 @@
 
 
  <%if user_signed_in? && current_user.is_landlord? && current_user.id == @subject.user_id %>
-      <%= link_to 'Edit', edit_subject_path(@subject) %> |
+      <%= link_to 'Editovat', edit_subject_path(@subject) %> |
 <%end%>
 
-<%= link_to 'Back', subjects_path %>
+<%= link_to 'Zpět', subjects_path %>
 
 <br>
 
@@ -36,19 +36,32 @@
 
 
 
-<% if user_signed_in? && current_user.id == @subject.user_id %>
-<% if @contracts.empty? %>
-<% if @subjects.where(leasable: false) %> 
-<p>Na přemětu není žádná smlouva, chcete ho nabídnout k pronájmu? Pozn: pokud je věc neveřejná, nezobrazí se v seznamu věcí k pronájmu ostatním uživatelům, pokud chcete věc veřejně nabídnout k pronájmu, musí být věc veřejná </p>
-<td><%= link_to 'Nabídnout k pronájmu', leasable_subject_path(@subject)  %></td>
-<%end%>
-<%end%>
-<%end%>
+    <% if user_signed_in? && current_user.id == @subject.user_id %>
+    <% if @contracts.empty? %>
+    <% if !@subject.leasable %> 
+    
+    
+          <h3>Na přemětu není žádná smlouva, chcete ho nabídnout k pronájmu? Pozn: pokud je věc neveřejná, nezobrazí se v seznamu věcí k pronájmu ostatním uživatelům, pokud chcete věc veřejně nabídnout k pronájmu, musí být věc veřejná </h3>
+      <td><%= link_to 'Nabídnout k pronájmu', leasable_subject_path(@subject)  %></td>
+    
+    <%end%>
+    <%end%>
+    <%end%>
 
 
-<% if @subjects.where(leasable: true) %> 
-<p>Předmět je nabízen v katalogu pro nájem </p>
-<%end%>
+
+    <% if user_signed_in? && current_user.id == @subject.user_id %>
+    <% if @subject.leasable %> 
+    
+          <h3>Předmět je nabízen k pronájmu, chcete předmět stáhnout z katalogu věcí k pronájmu?  </h3>
+      <td><%= link_to 'Stáhnout z katalogu ', not_leasable_subject_path(@subject) %></td>
+
+    
+    <%end%>
+    <%end%>
+
+
+
 
 
 <% if @contracts.where(is_public: false).where(terminate: false).any? %>
@@ -86,3 +99,10 @@
           <%= link_to "Přidat smlouvu k věci", new_contract_path(@contract) %>
         
  <% end %>
+<br><br><br>
+
+<%if user_signed_in? && @subject.watches.where(user_id: current_user.id).empty? %>
+<%= link_to "Hlídat hlídacím psem", watching_subject_path(@subject) %>
+ <% end %>
+<br><br><br>
+

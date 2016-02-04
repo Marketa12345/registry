@@ -5,13 +5,18 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 	has_many :subjects
 	has_one :profile
-
+  has_many :contacts
+  has_many :messages
   validates :role, presence: true
 
   after_create :build_profile
 
   def build_profile
-    Profile.create(user: self) # Associations must be defined correctly for this syntax, avoids using ID's directly.
+    Profile.create(user: self) 
+  end
+
+  def name 
+    profile.name rescue ''
   end
 
 

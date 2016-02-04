@@ -6,7 +6,6 @@ class ContractsController < ApplicationController
   def index
     @contracts = Contract.joins(:subject).where(subjects: {user_id: current_user.id})
 
-   #  @contract = Contract.joins(:subject).where(subjects: {user_id: current_user.id})
  
 
   end

@@ -1,16 +1,19 @@
-<%= simple_form_for(@profile) do |f| %>
+<%= simple_form_for @profile do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :surname %>
-    <%= f.input :street %>
-    <%= f.input :street_number %>
-    <%= f.input :zip_code %>
-    <%= f.input :city %>
+
+
+    <%= f.input :name, :label => "Jméno" %>
+    <%= f.input :surname, :label => "Příjmení" %>
+    <%= f.input :street, :label => "Ulice" %>
+    <%= f.input :street_number, :label => "Číslo popisné"%>
+    <%= f.input :zip_code , :label => "PSČ"%>
+    <%= f.input :city, :label => "Město" %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+
+    <%= f.submit "Uložit", class: "button"%>
   </div>
 <% end %>

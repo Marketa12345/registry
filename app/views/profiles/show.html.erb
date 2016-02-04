@@ -1,37 +1,37 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Jméno:</strong>
   <%= @profile.name %>
 </p>
 
 <p>
-  <strong>Surname:</strong>
+  <strong>Příjmení:</strong>
   <%= @profile.surname %>
 </p>
 
 <p>
-  <strong>Street:</strong>
+  <strong>Ulice:</strong>
   <%= @profile.street %>
 </p>
 
 <p>
-  <strong>Street number:</strong>
+  <strong>Číslo popisné:</strong>
   <%= @profile.street_number %>
 </p>
 
 <p>
-  <strong>Zip code:</strong>
+  <strong>PSČ:</strong>
   <%= @profile.zip_code %>
 </p>
 
 <p>
-  <strong>City:</strong>
+  <strong>Město:</strong>
   <%= @profile.city %>
 </p>
 
 <% if user_signed_in?  #&&  current_user.id == @profile.user_id %>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', my_profiles_path %>
+<%= link_to 'Editovat', edit_profile_path(@profile) %> |
+<%= link_to 'Zpátky', my_profiles_path %>
 <% end%>

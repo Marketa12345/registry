@@ -14,39 +14,32 @@
     </div>
   <% end %>
 
+<div class="form-inputs">
 
-<%= f.input :name, autofocus: true%>
+    <%= f.input :name, autofocus: true, :label => "Jméno"%>
+    <%= f.input :type,:collection => @types, :label => "Typ" ,:include_blank => false %>
+    <%= f.input :description, autofocus: true, :label => "Popis"%>
 
+</div>
 
-
-
-    <%= f.label :type %><br />
-    <%= f.select :type, options_for_select(["Movitost","Nemovitost", "Ostatní"])%>
-
-
-
-<%= f.input :description, autofocus: true%>
-
-
-
+<div class="field">
+   
 
     <%= f.fields_for :images, @subject.images do |i| %>
     <%=i.file_field :image %>
-    <%end%>
-
-
-
-
-  <%= f.input :remote_image_url, autofocus: true,:hint => "or image URL" %>
-
-
+          <%end%>
+    <%= f.input :remote_image_url, autofocus: true, :label => "Nebo URL adresa obrázku" %>
 
    
     <%= f.input :is_public2, label:"veřejny"%>
 
+</div>
 
+  <div class="form-actions">
 
- <%= f.button :submit %>
+      <%= f.submit "Uložit", class: "button"%>
+      
+  </div>
 
 <% end %>
 

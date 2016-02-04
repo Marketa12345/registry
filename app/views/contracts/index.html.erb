@@ -1,17 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Contracts</h1>
+<h1>Smlouvy</h1>
 
 
 
 <table>
   <thead>
     <tr>
-      <th>Contract for subject</th>
-      <th>Date from</th>
-      <th>Date to</th>
-      <th>Description</th>
-      <th>Terminate</th>
+      <th>Smlouva k předmětu</th>
+      <th>Datum počátku smlouvy</th>
+      <th>Datum ukončení smlouvy</th>
+      <th>Popis</th>
+      <th>Ukončeno?</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,16 +26,16 @@
         <td><%= contract.date_to %></td>
         <td><%= contract.description %></td>
         <td><%= contract.terminate %></td>
-        <td><%= link_to 'Show', contract %></td>
+        <td><%= link_to 'Detail', contract %></td>
 
 
 
 
 
          <%if user_signed_in? && current_user.is_landlord?%>
-        <td><%= link_to 'Edit', edit_contract_path(contract) %></td>
-        <td><%= link_to 'Terminate', terminate_contract_path(contract)  %></td>
-        <td><%= link_to 'Destroy', contract, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Editovat', edit_contract_path(contract) %></td>
+        <td><%= link_to 'Ukončit smlouvu', terminate_contract_path(contract)  %></td>
+        <td><%= link_to 'Smazat', contract, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
          
         <%end%>
       </tr>
@@ -45,7 +45,7 @@
  
 <br>
  <%if user_signed_in? && current_user.is_landlord?%>
-<%= link_to 'New Contract', new_contract_path %>
+<%= link_to 'Nová smlouva', new_contract_path %>
 <%end%>
 
 

@@ -1,15 +1,34 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy, :leasable]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy, :leasable, :not_leasable, :watching]
   before_action :authenticate_user!, except: [:index, :show]
 
 
-    def leasable
-@subject.leasable = true
-@subject.save
+def watching
 
-redirect_to subjects_path
+Watch.create(user_id: current_user.id, subject_id: @subject.id)
 
-  end
+redirect_to subject_path(@subject), notice: "Předmět byl přidán do sledovaných"
+
+end
+
+
+
+def leasable
+    @subject.leasable = true
+    @subject.save
+
+    redirect_to subjects_path
+
+end
+
+def not_leasable
+    @subject.leasable = false
+    @subject.save
+
+    redirect_to subjects_path
+
+end
+
 
   # GET /subjects
   # GET /subjects.json
@@ -32,8 +51,6 @@ redirect_to subjects_path
     @contracts=@subject.contracts
   
     @subjects = Subject.where(is_public2: true)
- 
-
 
   end
 
@@ -41,6 +58,8 @@ redirect_to subjects_path
   def new
     @subject = Subject.new
 
+    @types = (["Movitost","Nemovitost", "Ostatní"])
+    
     5.times do 
       @subject.images.build
 

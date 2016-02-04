@@ -1,26 +1,26 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Contract for subject:</strong>
+  <strong>Smlouva k předmětu:</strong>
   <%= @contract.subject.name  %>
 </p>
 
 
 <p>
-  <strong>Date from:</strong>
+  <strong>Datum počátku smluvy:</strong>
   <%= @contract.date_from %>
 </p>
 
 <p>
-  <strong>Date to:</strong>
+  <strong>Datum ukončení smlouvy:</strong>
   <%= @contract.date_to %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Popis:</strong>
   <%= @contract.description %>
 </p>
  <%if user_signed_in? && current_user.is_landlord?%>
-<%= link_to 'Edit', edit_contract_path(@contract) %> |
+<%= link_to 'Editovat', edit_contract_path(@contract) %> |
 <%end%>
-<%= link_to 'Back', contracts_path %>
+<%= link_to 'Zpět', contracts_path %>

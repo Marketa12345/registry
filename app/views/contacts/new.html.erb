@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<%= simple_form_for [@subject, @contact] do |f| %>
+
+
+  <i class="pt-row-icon glyphicon glyphicon-envelope"></i> <%= f.label :Předmět %>
+  <%= f.text_area :subject, placeholder: 'Předmět emailu', class: 'form-control' %>
+
+
+  <i class="pt-row-icon glyphicon glyphicon-envelope"></i> <%= f.label :Obsah %>
+  <%= f.text_area :content, placeholder: 'Zde pište svůj dotaz...', class: 'form-control' %>
+
+
+  <%= f.submit "Odeslat", class: "button"%>
+<% end %>
+

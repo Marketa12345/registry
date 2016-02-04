@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Subjects</h1>
+<h1>Předměty</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Leasable</th>
+      <th>Jméno</th>
+      <th>Typ</th>
+      <th>Popis</th>
+      <th>K pronájmu?</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,12 +22,12 @@
         <td><%= subject.type %></td>
         <td><%= subject.description %></td>
         <td><%= subject.leasable %></td>
-        <td><%= link_to 'Show', subject %></td>
+        <td><%= link_to 'Detail', subject %></td>
 
          <%if user_signed_in? && current_user.is_landlord?%>
 
-        <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
-        <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Editovat', edit_subject_path(subject) %></td>
+        <td><%= link_to 'Smazat', subject, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
 
 
 <%end%>
@@ -40,5 +40,5 @@
 
  <%if user_signed_in? && current_user.is_landlord?%>
 
-<%= link_to 'New Subject', new_subject_path %>
+<%= link_to 'Nový předmět', new_subject_path %>
 <%end%>

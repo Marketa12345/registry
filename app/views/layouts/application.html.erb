@@ -72,7 +72,7 @@
         
               <li><%=link_to "Registrace", new_user_registration_path%></li>
              
-              <li><%=link_to "All subjects", subjects_path%></li>
+              <li><%=link_to "Všechny předměty", subjects_path%></li>
               <li><%=link_to "Předměty volné k pronájmu", leasable_index_path%></li>
         
 
@@ -85,10 +85,12 @@
            
              
             
-              <li><%=link_to "Předměty", subjects_path%></li>
-              <li><%=link_to "Smlouvy", contracts_path%></li>
-              <li><%=link_to "Profil", my_profiles_path%></li>
-              <li><%=link_to "Předměty volné k pronájmu", leasable_index_path%></li>
+              <li><%=link_to "Moje předměty", subjects_path%></li>
+              <li><%=link_to "Moje smlouvy", contracts_path%></li>
+              <li><%=link_to "Můj profil", my_profiles_path%></li>
+              <li><%=link_to "Moje předměty volné k pronájmu", leasable_index_path%></li>
+              <li><%=link_to "Všechny veřejné předměty volné k pronájmu", all_leasable_index_path%></li>
+              <li><%=link_to "Moje zprávy", my_messages_messages_path %></li>
               
            
 
@@ -97,10 +99,12 @@
 
             <%if user_signed_in? && current_user.is_landlord?%>
              
-              <li><%=link_to "Předměty", subjects_path%></li>
-              <li><%=link_to "Smlouvy", contracts_path%></li>
-              <li><%=link_to "Profil", my_profiles_path%></li>
-              <li><%=link_to "Předměty volné k pronájmu", leasable_index_path%></li>
+              <li><%=link_to "Moje předměty", subjects_path%></li>
+              <li><%=link_to "Moje smlouvy", contracts_path%></li>
+              <li><%=link_to "Můj profil", my_profiles_path%></li>
+              <li><%=link_to "Moje předměty volné k pronájmu", leasable_index_path%></li>
+              <li><%=link_to "Všechny veřejné předměty volné k pronájmu", all_leasable_index_path%></li>
+              <li><%=link_to "Moje zprávy", my_messages_messages_path %></li>
                
 
                 <%end%>
