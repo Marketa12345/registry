@@ -1,14 +1,8 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  # GET /profiles
-  # GET /profiles.json
-  def index
 
-  end
 
-  # GET /profiles/1
-  # GET /profiles/1.json
 
 def my 
 
@@ -17,12 +11,10 @@ end
 
 
 
+  
   def show
-
-
   end
 
-  # GET /profiles/new
   def new
     @profile = Profile.new
   end
@@ -79,6 +71,8 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
+
       params.require(:profile).permit(:name, :surname, :street, :street_number, :zip_code, :city, :user_id)
+
     end
 end
