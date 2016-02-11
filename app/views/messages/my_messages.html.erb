@@ -1,20 +1,14 @@
 <h1>Moje zprávy</h1>
 
 <p id="notice"><%= notice %></p>
-
+  
 <h3>Odeslané</h3>
 
  <% @contacts.each do |contact| %>
 <% if user_signed_in? && current_user.id == contact.sender_id  %>
-<p>
-  <strong>Jméno odesílatele:</strong>
-  <%=  @sender.email %> 
-</p>
 
-<p>
-  <strong>Jméno příjemce:</strong>
-  <%= @recipient.email %>
-</p>
+
+
 
 <p>
   <strong>Předmět:</strong>
@@ -26,20 +20,14 @@
 </p>
 <% end %><% end %>
 
+<hr>
+
 <h3>Přijaté</h3>
 
  <% @contacts.each do |contact| %>
 <% if user_signed_in? && current_user.id == contact.recipient_id  %>
 
-<p>
-  <strong>Jméno odesílatele:</strong>
-  <%=  @sender.email %> 
-</p>
 
-<p>
-  <strong>Jméno příjemce:</strong>
-  <%= @recipient.email %>
-</p>
 <p>
   <strong>Předmět:</strong>
   <%= contact.subject %>

@@ -8,6 +8,21 @@ end
 
 
 
+    def change_role 
+        #debugger
+        if current_user.is_landlord?
+
+            current_user.role = "tenant"
+
+        else
+            current_user.role = "landlord"
+      end
+      current_user.save
+
+      redirect_to root_path
+    end
+
+
 
 def new
 

@@ -12,7 +12,9 @@
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-
+ <% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
 
 
 <nav class="top-bar" data-topbar role="navigation">
@@ -34,6 +36,8 @@
 
 
 
+
+
   
 
 
@@ -50,17 +54,33 @@
 
     <!-- Right Nav Section -->
 
+
+
+
+
     <ul class="right">
 
- <%if user_signed_in?%>
+ <%if current_user%>
  <li><%=link_to current_user.email, edit_user_registration_path%></li>
-      <li><%=link_to "Odhlásit", destroy_user_session_path, method: :delete%></li>
+      <li><%=link_to "Odhlásit", destroy_user_session_path%></li>
+
+<%end%>
+
+<%if !user_signed_in?%>
+<%= link_to image_tag("http://p2.uloziste.com/fotky7/v207be144093dde0/fa1bfb58b055b85d.jpg", size: "36x30", :border => 0), "/auth/facebook", id: "sign_in" %>
+
+<%= link_to image_tag("http://p2.uloziste.com/fotky7/vefa242cd57b0ee1/63c00c7264b3a665.jpg", size: "36x30", :border => 0), "/auth/twitter", id: "sign_in" %>
+
+<%= link_to image_tag("http://p2.uloziste.com/fotky7/v9eae63f5d2c7e9e/828c9cbae0afc85e.jpg", size: "36x30", :border => 0), "/auth/google_oauth2", id: "sign_in" %>
+
+
+
 
 <%end%>
 
    <li class="has-dropdown">
 
-        <a href="#">Dropdown</a>
+        <a href="#">Menu</a>
 
         <ul class="dropdown">
 
@@ -68,7 +88,6 @@
 
 
               <li><%=link_to "Přihlásit se ", new_user_session_path%></li>
- 
         
               <li><%=link_to "Registrace", new_user_registration_path%></li>
              
@@ -151,7 +170,10 @@
         <div class="small-3 columns">
                   <%=link_to "Rozšířené", searches_path, class: "button"%>
         </div>
-
+<br>
+<br>
+<br>
+<br>
 
 
 

@@ -26,8 +26,10 @@ gem 'simple_form'
 gem 'devise'
 
 gem "letter_opener", :group => :development
-
-
+#socialni site
+gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
+gem 'omniauth-twitter'
 
 #for contacting owner of subjects
 gem 'mail_form'

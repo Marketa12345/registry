@@ -5,6 +5,12 @@ Rails.application.routes.draw do
 
 
 
+
+  match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+  match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
+
+
   get 'leasable/index'
 
   resources :contracts
@@ -35,12 +41,21 @@ Rails.application.routes.draw do
   
   root :to => "home#index"
 
-   #devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
-devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
+#devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
 
+#devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register'}
+#devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register'}
+devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
 
 devise_scope :user do
   get "sign_in", to: "devise/sessions#new"
+end
+
+
+ resources :users do
+
+  get :change_role, on: :member
+
 end
 
 

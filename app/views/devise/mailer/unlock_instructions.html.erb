@@ -1,7 +1,7 @@
-<p>Hello <%= @resource.email %>!</p>
+<p>Dobrý den <%= @resource.email %>!</p>
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+<p>Váš účet byl uzamčen kvůli nadměrnému počtu neúspěšných pokusů o přihlášení.</p>
 
-<p>Click the link below to unlock your account:</p>
+<p>KLikněte na odkaz níže pro odemčení účtu:</p>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+<p><%= link_to 'Odemknout účet', unlock_url(@resource, unlock_token: @token) %></p>
