@@ -28,6 +28,6 @@
 <br>
 <h3>Zrušit účet</h3>
 
-<p>Jste nespokojeni? <%= button_to "Zrušit účet", registration_path(resource_name), data: { confirm: "Jste si jisti?" }, method: :delete %></p>
+<p>Jste nespokojeni? <%= button_to "Zrušit účet", cancel_user_registration_path, data: { confirm: "Jste si jisti?" }, method: :delete %></p>
 
 <%= link_to "Zpět", :back %>

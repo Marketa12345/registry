@@ -12,14 +12,14 @@ end
         #debugger
         if current_user.is_landlord?
 
-            current_user.role = "tenant"
+            current_user.role = "nájemce"
 
         else
-            current_user.role = "landlord"
+            current_user.role = "pronajímatel"
       end
       current_user.save
 
-      redirect_to root_path
+      redirect_to edit_user_registration_path
     end
 
 

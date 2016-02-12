@@ -30,10 +30,10 @@ gem "letter_opener", :group => :development
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 gem 'omniauth-twitter'
-
+gem 'social-share-button', '~> 0.1.6'
 #for contacting owner of subjects
 gem 'mail_form'
-
+gem 'haml'
 
 gem "rmagick"
 gem "carrierwave"

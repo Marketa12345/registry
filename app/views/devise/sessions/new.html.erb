@@ -18,6 +18,18 @@
     </div>
   <% end -%>
 
+
+     <%= f.label :Nebo %>
+
+    <%= link_to image_tag("http://p2.uloziste.com/fotky7/v207be144093dde0/fa1bfb58b055b85d.jpg", size: "46x40", :border => 0), "/auth/facebook", id: "log_in" %>
+
+<%= link_to image_tag("http://p2.uloziste.com/fotky7/vefa242cd57b0ee1/63c00c7264b3a665.jpg", size: "46x40", :border => 0), "/auth/twitter", id: "log_in" %>
+
+<%= link_to image_tag("http://p2.uloziste.com/fotky7/v9eae63f5d2c7e9e/828c9cbae0afc85e.jpg", size: "46x40", :border => 0), "/auth/google_oauth2", id: "log_in" %>
+
+<br>
+
+
   <div class="actions">
     <%= f.submit "Přihlásit", class: "button" %>
     

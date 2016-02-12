@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
+ *= require social-share-button
+
 
  */
 
@@ -79,4 +81,16 @@ label.collection_check_boxes {
   margin: 0;
   vertical-align: -2px;
   margin-left: 2px;
+}
+
+
+.social-share-button-facebook {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("/social/facebook.png") no-repeat;
+}
+
+.margin-30px{
+  margin-top: 30px;
 }

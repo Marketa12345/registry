@@ -16,7 +16,7 @@ before_validation :set_role
 
 def set_role 
 
-  self.role = "tenant" if self.role.blank?
+  self.role = "nájemce" if self.role.blank?
 end
 
 #def self.from_omniauth(auth)
@@ -39,9 +39,9 @@ end
       user.name = auth.info.name
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.email = auth.info.email 
-      user.password = Devise.friendly_token[0,20]
-      user.save!
+      user.email = auth.info.email   #nemusi byt asi
+      user.password = Devise.friendly_token[0,20]  #nemusi byt asi
+      user.save!#
     end
   end
 
@@ -65,11 +65,11 @@ end
 
 
 def is_landlord?
-	role == "landlord"
+	role == "pronajímatel"
 end
 
 def is_tenant?
-	role == "tenant"
+	role == "nájemce"
 end
 
 
