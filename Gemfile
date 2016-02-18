@@ -27,6 +27,7 @@ gem 'devise'
 
 gem "letter_opener", :group => :development
 #socialni site
+gem 'omniauth'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 gem 'omniauth-twitter'

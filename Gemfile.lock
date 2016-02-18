@@ -229,6 +229,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   mail_form
+  omniauth
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-twitter

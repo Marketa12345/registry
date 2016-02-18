@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>
+      <%= content_for?(:title) ? yield(:title) : "Registr nájmů" %>
+    </title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+   
+
+  <!-- Load Facebook SDK for JavaScript -->
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/cs_CZ/sdk.js#xfbml=1&version=v2.5&appId=533794653443388";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "flash #{key}" %>
+    <% end %>
+
+
+    <nav class="top-bar" role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1>
+            <a href="/">Registr</a>
+          </h1>
+        </li>
+
+
+
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
+        -->
+        <li class="toggle-topbar menu-icon">
+          <a href="#">
+            <span>Menu</span>
+          </a>
+        </li>
+      </ul>
+
+      <section class="top-bar-section">
+        <!-- Right Nav Section
+        -->
+        <ul class="right">
+
+
+          <% if current_user  %>
+            <li>
+              <%= link_to current_user.email, edit_user_registration_path %>
+            </li>
+            <li>
+              <%= link_to "Odhlásit", destroy_user_session_path %>
+            </li>
+          <% end %>
+
+          <li class="has-dropdown">
+            <a href="#">Menu</a>
+            <ul class="dropdown">
+
+              <% if !user_signed_in? %>
+                <li>
+                  <%= link_to "Přihlásit se ", new_user_session_path %>
+                </li>
+                <li>
+                  <%= link_to "Registrace", new_user_registration_path %>
+                </li>
+                <li>
+                  <%= link_to "Všechny předměty", subjects_path %>
+                </li>
+                <li>
+                  <%= link_to "Předměty volné k pronájmu", leasable_index_path %>
+                </li>
+              <% end %>
+
+
+              <% if user_signed_in? && current_user.is_tenant? %>
+                <li>
+                  <%= link_to "Moje předměty", subjects_path %>
+                </li>
+                <li>
+                  <%= link_to "Moje smlouvy", contracts_path %>
+                </li>
+                <li>
+                  <%= link_to "Můj profil", my_profiles_path %>
+                </li>
+              
+                <li>
+                  <%= link_to "Všechny veřejné předměty volné k pronájmu", all_leasable_index_path %>
+                </li>
+                <li>
+                  <%= link_to "Moje zprávy", my_messages_messages_path %>
+                </li>
+              <% end %>
+
+
+
+              <% if user_signed_in? && current_user.is_landlord? %>
+                <li>
+                  <%= link_to "Moje předměty", subjects_path %>
+                </li>
+                <li>
+                  <%= link_to "Moje smlouvy", contracts_path %>
+                </li>
+                <li>
+                  <%= link_to "Můj profil", my_profiles_path %>
+                </li>
+                <li>
+                  <%= link_to "Moje předměty volné k pronájmu", leasable_index_path %>
+                </li>
+                <li>
+                  <%= link_to "Všechny veřejné předměty volné k pronájmu", all_leasable_index_path %>
+                </li>
+                <li>
+                  <%= link_to "Moje zprávy", my_messages_messages_path %>
+                </li>
+              <% end %>
+
+            </ul>
+          </li>
+        </ul>
+
+
+         </section>
+    
+        
+        <!-- Left Nav Section
+        -->
+        <ul class="left">
+          <li class="has-form">
+            <div class="row collapse">
+              <div class="large-5 small-9 columns">
+                <%= form_tag subjects_path, method: :get, class: "navbar-form navbar-right", role: "search" do %>
+                  <p>
+                    <%= text_field_tag :search, params[:search], class: "radius-left expand", placeholder: "Vyhledávání předmětů" %>
+                  </p>
+                <% end %>
+              </div>
+              <div class="large-4 small-3 columns">
+                <p>
+                  <%= submit_tag "Hledat", name: nil, class: "alert button expand" %>
+                </p>
+              </div>
+              <div class="small-3 columns">
+                <%= link_to "Rozšířené", searches_path, class: "button" %>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </nav>
+
+
+    <div class="row full-min-height" id="main-content">
+      <%= yield %>
+    </div>
+
+
+
+
+    <footer class="row">
+
+      <div class="large-12 columns">
+        <hr/>
+        <div class="margin-30px">
+
+          <%= social_share_button_tag("Registr nájmů", :url => "http://registrnajmu.cz/") %>
+
+
+          <div class="fb-like" data-href="http://registrnajmu.cz/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+
+        <p>© Registr 2015</p>
+        </div>
+      </div>
+    </footer>
+    <%= javascript_include_tag "application" %>
+  </body>
+</html>
