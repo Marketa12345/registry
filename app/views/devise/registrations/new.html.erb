@@ -9,7 +9,7 @@
   </div>
   <div class="field">
     <%= f.label :role %><br />
-    <%= f.select :role, options_for_select(["pronajímatel","nájemce"])%>
+    <%= f.select :role, options_for_select(["landlord","tenant"])%>
   </div>
   <div class="field">
     <%= f.label :heslo %>
@@ -28,12 +28,10 @@
 
      <%= f.label :Nebo %>
 
-<%= link_to image_tag("http://p2.uloziste.com/fotky7/v207be144093dde0/fa1bfb58b055b85d.jpg", size: "46x40", :border => 0), "/auth/facebook", id: "sign_in" %>
-
-<%= link_to image_tag("http://p2.uloziste.com/fotky7/vefa242cd57b0ee1/63c00c7264b3a665.jpg", size: "46x40", :border => 0), "/auth/twitter", id: "sign_in" %>
-
-<%= link_to image_tag("http://p2.uloziste.com/fotky7/v9eae63f5d2c7e9e/828c9cbae0afc85e.jpg", size: "46x40", :border => 0), "/auth/google_oauth2", id: "sign_in" %>
-
+ <% resource_class.omniauth_providers.each do |provider| %>
+            
+  <%= link_to_omniauth_provider(provider)%>
+<%end%>
 <br>
 
 

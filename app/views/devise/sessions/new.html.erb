@@ -21,12 +21,15 @@
 
      <%= f.label :Nebo %>
 
-    
 
+ 
+<div class="social-icon">   
  <% resource_class.omniauth_providers.each do |provider| %>
             
   <%= link_to_omniauth_provider(provider)%>
 <%end%>
+
+</div>
 <br>
 
 

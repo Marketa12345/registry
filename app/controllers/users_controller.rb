@@ -12,10 +12,10 @@ end
         #debugger
         if current_user.is_landlord?
 
-            current_user.role = "nájemce"
+            current_user.role = "tenant"
 
         else
-            current_user.role = "pronajímatel"
+            current_user.role = "landlord"
       end
       current_user.save
 

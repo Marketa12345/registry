@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
+         :omniauthable, :omniauth_providers => [:facebook, :google_oauth2,:twitter]
 	has_many :subjects
 	has_one :profile
   has_many :contacts
@@ -17,7 +17,7 @@ before_validation :set_role
 
 def set_role 
 
-  self.role = "nájemce" if self.role.blank?
+  self.role = "tenant" if self.role.blank?
 end
 
 
@@ -77,11 +77,11 @@ end
 
 
 def is_landlord?
-	role == "pronajímatel"
+	role == "landlord"
 end
 
 def is_tenant?
-	role == "nájemce"
+	role == "tenant"
 end
 
 
